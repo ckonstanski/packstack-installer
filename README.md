@@ -4,8 +4,9 @@ Welcome to the packstack-installer ansible playbook.
 
 # Prerequisites
 
-- A (set of) CentOS server(s) that have a minimal CentOS OS
-  installation plus an ssh pubkey preinstalled for ansible to use.
+- A (set of) CentOS server(s) that have a minimal CentOS installation
+  plus an ssh pubkey preinstalled for ansible to use in
+  /root/.ssh/authorized_keys.
   
 - A workstation with ansible installed, and containing the private key
   matching the public key that you installed on the server(s).
@@ -51,3 +52,23 @@ Welcome to the packstack-installer ansible playbook.
 
 # Pre-Flight Checks
 
+After cloning the repo, go into the conf/ directory and make a copy
+of env.yaml.example called env.yaml. Go through env.yaml thoroughly
+and make all necessary customizations.
+
+# Running the Plybook
+
+The contents of env.yaml are used to create global variables in the
+ansible playbook. To run ansible using env.yaml, use the following
+command line:
+
+```
+ansible-playbook -i dynamic_hosts_dev.py install.yaml
+```
+
+If ansible cannot reach the server(s), you can use the following to
+test while troubleshooting DNS, SSH, etc:
+
+```
+ansible target -i dynamic_hosts_dev.py -m ping
+```
