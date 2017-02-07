@@ -1,0 +1,3 @@
+---
+- name: "Perform tasks on target host"
+  include: playbooks/install_target.yaml

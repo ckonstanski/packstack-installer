@@ -1,0 +1,40 @@
+---
+- name: "Yum configuration"
+  hosts: target
+  tasks:
+    - name: "Install packages"
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - centos-release-openstack-newton
+
+    - name: "yum update"
+      shell: yum update -y
+
+    - name: "Upgrade existing packages"
+      yum:
+        name: "*"
+        state: latest
+
+    - name: "Install packages"
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - vim
+        - ntp
+        - tree
+        - lsof
+        - rsync
+        - nmap
+        - tcpdump
+        - git
+        - openstack-packstack
+
+    - name: "Enable service"
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items:
+        - ntpd

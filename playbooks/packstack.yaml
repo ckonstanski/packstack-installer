@@ -1,0 +1,13 @@
+---
+- name: "packstack configuration"
+  hosts: target
+  tasks:
+    - name: "Copy files"
+      template:
+        src: "../templates/packstack/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - { src: ans.txt.j2, dest: /root/ans.txt }

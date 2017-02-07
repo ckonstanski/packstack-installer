@@ -1,0 +1,13 @@
+---
+- name: "Locale configuration"
+  hosts: target
+  tasks:
+    - name: "Copy files"
+      template:
+        src: "../templates/locale/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - { src: locale.conf.j2, dest: /etc/locale.conf }

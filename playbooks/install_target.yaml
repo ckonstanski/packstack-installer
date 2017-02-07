@@ -1,0 +1,18 @@
+---
+- name: "Configure locale"
+  include: locale.yaml
+
+- name: "Configure yum"
+  include: yum.yaml
+
+- name: "Configure grub menu"
+  include: grub.yaml
+
+- name: "Configure users"
+  include: users.yaml
+
+- name: "Configure emacs"
+  include: vim.yaml
+
+- name: "Configure packstack"
+  include: packstack.yaml
