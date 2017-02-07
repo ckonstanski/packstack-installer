@@ -3,12 +3,12 @@
   hosts: target
   tasks:
     - name: "Configure .vimrc"
-      template:
-        src: "../templates/vim/{{ item.src }}"
+      copy:
+        src: "../files/{{ item.src }}"
         dest: "{{ item.home }}/{{ item.dest }}"
         mode: 0644
         owner: "{{ item.owner }}"
         group: "{{ item.group }}"
       with_items:
-        - { src: vimrc.j2, dest: .vimrc, home: /home/ckonstanski, owner: ckonstanski, group: ckonstanski }
-        - { src: vimrc.j2, dest: .vimrc, home: /root, owner: root, group: root }
+        - { src: vimrc, dest: .vimrc, home: /home/ckonstanski, owner: ckonstanski, group: ckonstanski }
+        - { src: vimrc, dest: .vimrc, home: /root, owner: root, group: root }
