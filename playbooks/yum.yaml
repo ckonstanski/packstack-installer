@@ -32,9 +32,17 @@
         - git
         - openstack-packstack
 
-    - name: "Enable service"
+    - name: "Enable services"
       service:
         name: "{{ item }}"
         enabled: yes
       with_items:
         - ntpd
+
+    - name: "Disable services"
+      service:
+        name: "{{ item }}"
+        enabled: no
+        state: stopped
+      with_items:
+        - NetworkManager

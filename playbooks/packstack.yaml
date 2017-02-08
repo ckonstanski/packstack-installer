@@ -2,7 +2,7 @@
 - name: "packstack configuration"
   hosts: target
   tasks:
-    - name: "Copy files"
+    - name: "Install packstack answer file"
       template:
         src: "../templates/packstack/{{ item.src }}"
         dest: "{{ item.dest }}"
@@ -11,3 +11,13 @@
         group: root
       with_items:
         - { src: ans.txt.j2, dest: /root/ans.txt }
+
+    - name: "Configure host for nested VMs"
+      copy:
+        src: "../files/{{ item }}"
+        dest: "/etc/modprobe.d/{{ item }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - kvm.conf

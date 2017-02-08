@@ -2,15 +2,15 @@
 - name: "GRUB configuration"
   hosts: target
   tasks:
-    - name: "Configure /etc/default/grub"
+    - name: "Configure grub"
       copy:
-        src: "{{ item.src }}"
-        dest: "{{ item.dest }}"
+        src: "../files/{{ item }}"
+        dest: "/etc/default/{{ item }}"
         mode: 0644
         owner: root
         group: root
       with_items:
-        - { src: ../files/grub, dest: /etc/default/grub }
+        - grub
 
     - name: "Update grub.conf"
-      shell: grub2-mkconfig -o /boot/grub/grub.cfg
+      shell: grub2-mkconfig -o /boot/grub2/grub.cfg
