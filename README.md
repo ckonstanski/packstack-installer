@@ -58,17 +58,19 @@ and make all necessary customizations.
 
 # Running the Plybook
 
+This playbook needs to be run as root.
+
 The contents of env.yaml are used to create global variables in the
 ansible playbook. To run ansible using env.yaml, use the following
 command line:
 
 ```
-ansible-playbook -i dynamic_hosts_dev.py install.yaml
+sudo ansible-playbook -i dynamic_hosts_dev.py install.yaml
 ```
 
 If ansible cannot reach the server(s), you can use the following to
 test while troubleshooting DNS, SSH, etc:
 
 ```
-ansible target -i dynamic_hosts_dev.py -m ping
+sudo ansible target -i dynamic_hosts_dev.py -m ping
 ```
